@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "homelab-trampoline-server"
+version = "0.1.0"
+description = "A lightning network trampoline-server implementation, not meant to be run on a public node."
+authors = ["Peter Neuroth <pet.v.ne@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyln-client = "^24.5"
+pyln-proto = "^24.5"
+
+[tool.poetry.scripts]
+homelab_trampoline_server = "homelab_trampoline_server:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
