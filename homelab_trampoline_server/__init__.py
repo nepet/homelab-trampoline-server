@@ -27,7 +27,7 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
         plugin.log(
             f"reading {invoice_length} bytes from payment metadata for {invoice_type} as the invoice"
         )
-        invoice_value = payment_metadata.read(invoice_length)
+        invoice_value = payment_metadata.read(invoice_length).decode('utf-8')
     except Exception as e:
         plugin.log(f"no trampoline payment detected {e}")
         return {"result": "continue"}
