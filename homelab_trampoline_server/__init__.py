@@ -41,14 +41,15 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
             f"reading {amount_length} bytes from payment metadata for {amount_type} as the amount"
         )
         amount_value = payment_metadata.read(amount_length)
+        amount_msat_value = int.from_bytes(amount_value, 'big')
     except Exception as e:
         plugin.log(f"got error on htlc_accepted {e}")
         return {"result": "fail", "failure_message": "2002"}
 
     try:
         label = f"trampoline-{random.randint(1,65535)}"
-        plugin.log(f"attempting pay for invoice={invoice_value} and amount={amount_value} and label={label}")
-        res = plugin.rpc.pay(invoice_value, amount_msat=amount_value, label=label)
+        plugin.log(f"attempting pay for invoice={invoice_value} and amount={amount_msat_value} and label={label}")
+        res = plugin.rpc.pay(invoice_value, amount_msat=amount_msat_value, label=label)
         plugin.log("pay response is {res}")
         return {
             "result": "resolve",
