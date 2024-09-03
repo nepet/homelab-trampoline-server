@@ -3,6 +3,7 @@ from pyln.proto.primitives import varint_decode
 from binascii import unhexlify
 from io import BytesIO
 import random
+import time
 
 INVOICE_TYPE = 33001
 AMOUNT_TYPE = 33003
@@ -47,6 +48,10 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
         return {"result": "fail", "failure_message": "2002"}
 
     try:
+        duration = random.randint(10,30)
+        plugin.log(f"sleep for {duration} sec before continuing")
+        time.sleep(duration)
+
         label = f"trampoline-{random.randint(1,65535)}"
         plugin.log(f"attempting pay for invoice={invoice_value} and label={label}")
         res = plugin.rpc.pay(invoice_value, label=label)
