@@ -56,6 +56,7 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
             "payment_key": res["payment_preimage"],
         }
     except Exception as e:
+        plugin.log(f"got error trying to pay invoice {invoice_value} {e}")
         return {"result": "fail", "failure_message": "2002"}
 
 
