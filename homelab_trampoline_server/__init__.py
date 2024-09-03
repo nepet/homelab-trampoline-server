@@ -49,7 +49,7 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
     try:
         label = f"trampoline-{random.randint(1,65535)}"
         plugin.log(f"attempting pay for invoice={invoice_value} and amount={amount_msat_value} and label={label}")
-        res = plugin.rpc.pay(invoice_value, amount_msat=amount_msat_value, label=label)
+        res = plugin.rpc.pay(invoice_value, label=label)
         plugin.log("pay response is {res}")
         return {
             "result": "resolve",

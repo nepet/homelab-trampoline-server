@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "homelab-trampoline-server"
-version = "0.1.0"
+version = "0.1.1"
 description = "A lightning network trampoline-server implementation, not meant to be run on a public node."
 authors = ["Peter Neuroth <pet.v.ne@gmail.com>"]
 license = "MIT"
