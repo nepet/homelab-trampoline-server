@@ -48,7 +48,7 @@ def on_htlc_accepted(htlc, onion, plugin, **kwargs):
         return {"result": "fail", "failure_message": "2002"}
 
     try:
-        duration = random.randint(10,30)
+        duration = random.randint(30,90)
         plugin.log(f"sleep for {duration} sec before continuing")
         time.sleep(duration)
 
